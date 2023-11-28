@@ -1,0 +1,11 @@
+.aditional {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.aditional__list {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}

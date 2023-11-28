@@ -1,3 +1,17 @@
+import Page from "./component/page";
+import Header from "./component/header";
+import Title from "./component/title";
+import Photo from "./component/photo";
+import Price from "./component/price";
+import RoomList from "./component/room-list";
+import Descripion from "./component/description";
+import ReviewsList from "./component/reviews-list";
+import AditionalProperties from "./component/additional-properties";
+import Amenities from "./component/amenities";
+import PropertiesDetails from "./component/properties-details";
+import NearbyAttractions from "./component/nearby-attractions";
+import ContactInfo from "./component/contact-info";
+
 function App() {
   const data = {
     listing_name: "Іст-Сайд Біл",
@@ -144,7 +158,44 @@ function App() {
     ],
   };
 
-  return <div>Hello World</div>;
+  return (
+    <Page>
+      <Header />
+      <Title
+        title={data.listing_name}
+        rating={data.reviews_summary.average_rating}
+        review={data.reviews_summary.total_reviews}
+        city={data.location.city}
+        country={data.location.country}
+        superhost={data.superhost}
+      />
+      <Photo image={data.image} name={data.listing_name} />
+      <Price
+        price={data.price.original_price}
+        discount={data.price.discounted_price}
+        currency={data.price.currency}
+        cleaning={data.price.cleaning_fee}
+        service={data.price.service_fee}
+        checkin={data.availability.checkin_date}
+        checkout={data.availability.checkout_date}
+      />
+      <RoomList list={data.roomTypes} />
+      <Descripion title="Опис">{data.description}</Descripion>
+
+      <PropertiesDetails {...data.property_details} />
+      <Descripion title="Про сусідів">{data.neighborhood_info}</Descripion>
+
+      <Amenities {...data.amenities} />
+
+      <ContactInfo {...data.contact_info} />
+
+      <AditionalProperties {...data.additional_properties} />
+
+      <ReviewsList list={data.guestReviews} />
+
+      <NearbyAttractions attractions={data.nearbyAttractions} />
+    </Page>
+  );
 }
 
 export default App;
